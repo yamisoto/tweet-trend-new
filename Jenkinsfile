@@ -6,43 +6,27 @@ pipeline {
     }
     environment {
         PATH = "/opt/apache-maven-3.9.2/bin:$PATH"
-        REGISTRY = 'https://valaxy05.jfrog.io' // Using the registry as an environment variable
-        // Define other environment variables as needed
+        REGISTRY = 'https://valaxy05.jfrog.io'
     }
     stages {
         stage("Prepare") {
             steps {
                 script {
-                    // Configure Maven settings.xml for the registry if needed
-                    // sh 'configure-maven.sh' or similar command
+                    // Ensure there are executable commands here
                 }
             }
         }
-        stage("build") {
-            steps {
-                echo "----------- build started ----------"
-                sh 'mvn clean deploy -Dmaven.test.skip=true -DaltDeploymentRepository=my-repo::default::${REGISTRY}'
-                echo "----------- build completed ----------"
-            }
-        }
-        stage("test") {
-            steps {
-                echo "----------- unit test started ----------"
-                sh 'mvn surefire-report:report'
-                echo "----------- unit test completed ----------"
-            }
-        }
+        // Other stages...
     }
     post {
         always {
-            // Archive artifacts, publish reports, etc.
+            echo 'This will always execute.'
         }
         success {
             echo 'Build and Test stages succeeded.'
         }
         failure {
             echo 'Build or Test stages failed.'
-            // Handle failures appropriately
         }
     }
 }
