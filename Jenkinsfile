@@ -12,7 +12,7 @@ pipeline {
         stage("build") {
             steps {
                 script {
-                    #// Ensure there are executable commands here
+                   
                    sh  'mvn clean depoly'
                 }
             }
