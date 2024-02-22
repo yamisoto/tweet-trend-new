@@ -6,13 +6,14 @@ pipeline {
     }
     environment {
         PATH = "/opt/apache-maven-3.9.2/bin:$PATH"
-        REGISTRY = 'https://valaxy05.jfrog.io'
+       # REGISTRY = 'https://valaxy05.jfrog.io'
     }
     stages {
-        stage("Prepare") {
+        stage("build") {
             steps {
                 script {
-                    // Ensure there are executable commands here
+                    #// Ensure there are executable commands here
+                   sh  'mvn clean depoly'
                 }
             }
         }
